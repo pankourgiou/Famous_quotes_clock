@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Famous Quotes Clock</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
+        font-family: "Georgia", serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 60px;
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        max-width: 900px;
+        backdrop-filter: blur(8px);
+        animation: fadeIn 1.5s ease;
+    }
+
+    .time {
+        font-family: "Times New Roman", serif;
+        font-size: 3em;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        letter-spacing: 3px;
+    }
+
+    .quote {
+        font-style: italic;
+        font-size: 1.4em;
+        color: #34495e;
+        line-height: 1.6;
+        transition: opacity 0.5s ease;
+    }
+
+    .title {
+        position: absolute;
+        top: 30px;
+        font-size: 0.9em;
+        letter-spacing: 3px;
+        color: #5d6d7e;
+        text-transform: uppercase;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* floating subtle light particles */
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(255,255,255,0.6);
+        border-radius: 50%;
+        animation: float 12s infinite linear;
+    }
+
+    @keyframes float {
+        from { transform: translateY(100vh); opacity: 0; }
+        50% { opacity: 0.8; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="title">📝 Famous Quotes Clock</div>
+
+<div class="container">
+    <div class="time" id="time">00:00:00</div>
+    <div class="quote" id="quote">Loading inspiration...</div>
+</div>
+
+<script>
+const quotesClock = {
+    0: "“The best way out is always through.” – Robert Frost",
+    1: "“Do not go gentle into that good night.” – Dylan Thomas",
+    2: "“Simplicity is the ultimate sophistication.” – Leonardo da Vinci",
+    3: "“Be yourself; everyone else is already taken.” – Oscar Wilde",
+    4: "“In the middle of difficulty lies opportunity.” – Albert Einstein",
+    5: "“What you get by achieving your goals is not as important as what you become.” – Zig Ziglar",
+    6: "“Every morning we are born again. What we do today is what matters most.” – Buddha",
+    7: "“An early-morning walk is a blessing for the whole day.” – Henry David Thoreau",
+    8: "“Success usually comes to those who are too busy to be looking for it.” – Henry David Thoreau",
+    9: "“The secret of getting ahead is getting started.” – Mark Twain",
+    10: "“Quality means doing it right when no one is looking.” – Henry Ford",
+    11: "“Don’t watch the clock; do what it does. Keep going.” – Sam Levenson",
+    12: "“Noon is nature's smile.” – William R. Alger",
+    13: "“You miss 100% of the shots you don’t take.” – Wayne Gretzky",
+    14: "“A day without laughter is a day wasted.” – Charlie Chaplin",
+    15: "“There is no substitute for hard work.” – Thomas Edison",
+    16: "“Act as if what you do makes a difference. It does.” – William James",
+    17: "“The future depends on what you do today.” – Mahatma Gandhi",
+    18: "“Happiness is not something ready made. It comes from your own actions.” – Dalai Lama",
+    19: "“Do what you can, with what you have, where you are.” – Theodore Roosevelt",
+    20: "“We are what we repeatedly do. Excellence, then, is not an act, but a habit.” – Aristotle",
+    21: "“It always seems impossible until it’s done.” – Nelson Mandela",
+    22: "“Peace begins with a smile.” – Mother Teresa",
+    23: "“Night is a world lit by itself.” – Antonio Porchia"
+};
+
+function updateClock() {
+    const now = new Date();
+    const hour = now.getHours();
+    const timeString = now.toLocaleTimeString();
+
+    document.getElementById("time").textContent = timeString;
+    document.getElementById("quote").textContent = "📝 " + quotesClock[hour];
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+/* create floating particles */
+for (let i = 0; i < 40; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * window.innerWidth + "px";
+    particle.style.animationDuration = (8 + Math.random() * 8) + "s";
+    document.body.appendChild(particle);
+}
+</script>
+
+</body>
+</html>
